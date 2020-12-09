@@ -12,6 +12,10 @@ class AppCenterUploader(
     private val appName: String
 ) {
 
+    fun uploadApk(file: File, changeLog: String, destinationNames: List<String>, notifyTesters: Boolean) {
+        uploadApk(file, changeLog, destinationNames, notifyTesters) { }
+    }
+
     fun uploadApk(file: File, changeLog: String, destinationNames: List<String>, notifyTesters: Boolean, logger: (String) -> Unit): String {
         logger("Starting release upload...")
         val prepareResponse = apiClient.prepareReleaseUpload(ownerName, appName).execute()
